@@ -27,6 +27,8 @@ ruff = "*"
 isort = "*"
 black = "*"
 interrogate = "*"
+pre-commit = "*"
+pymarkdown = "*"
 
 
 [tool.poetry.group.test.dependencies]
