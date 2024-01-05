@@ -6,10 +6,10 @@ build-backend = "poetry_dynamic_versioning.backend"
 [tool.poetry]
 name = "md tester"
 version = "0.1.0"
-description = "Markdown environment tester"
+description = "Test environment for different markdown configurations and setup"
 authors = ["Warner Leijenaar <git@renraw.nl>"]
 license = "MIT"
-readme = "README.md"
+# readme = "README.md"
 
 
 [tool.poetry.dependencies]
