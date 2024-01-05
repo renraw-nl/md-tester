@@ -9,7 +9,7 @@ version = "0.1.0"
 description = "Test environment for different markdown configurations and setup"
 authors = ["Warner Leijenaar <git@renraw.nl>"]
 license = "MIT"
-# readme = "README.md"
+readme = "README.md"
 
 
 [tool.poetry.dependencies]
@@ -20,6 +20,7 @@ tqdm = "*"
 openpyxl = "*"
 result = "*"
 entangled-cli = {extras = ["rich"], version = "*"}
+pymarkdownlnt = "^0.9.15"
 
 
 [tool.poetry.group.dev.dependencies]
@@ -28,7 +29,6 @@ isort = "*"
 black = "*"
 interrogate = "*"
 pre-commit = "*"
-pymarkdown = "*"
 
 
 [tool.poetry.group.test.dependencies]
@@ -131,13 +131,16 @@ select = ["E", "F"]
 ignore = []
 line-length = 88
 
+
 # Allow unused variables when underscore-prefixed.
 dummy-variable-rgx = "^(_+|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$"
 target-version = "py311"
 
+
 # Allow autofix for all enabled rules (when `--fix`) is provided.
 fixable = ["A", "B", "C", "D", "E", "F", "G", "I", "N", "Q", "S", "T", "W", "ANN", "ARG", "BLE", "COM", "DJ", "DTZ", "EM", "ERA", "EXE", "FBT", "ICN", "INP", "ISC", "NPY", "PD", "PGH", "PIE", "PL", "PT", "PTH", "PYI", "RET", "RSE", "RUF", "SIM", "SLF", "TCH", "TID", "TRY", "UP", "YTT"]
 unfixable = []
+
 
 # Exclude a variety of commonly ignored directories.
 exclude = [
@@ -164,9 +167,36 @@ exclude = [
     "venv",
 ]
 
+
 [tool.ruff.mccabe]
 # Unlike Flake8, default to a complexity level of 10.
 max-complexity = 10
+
+
+# pymarkdownlnt configuration (yes both are correct
+# ref. https://github.com/jackdewinter/pymarkdown/blob/main/docs/advanced_configuration.md#alternate-project-configuration-files
+[tool.pymarkdown]
+log = {level = "WARNING", stack-trace = false}
+
+[tool.pymarkdown.extensions]
+markdown-disallow-raw-html = {enabled = true}
+front-matter = {enabled = true}
+# markdown-task-list-items = {enabled = true}
+
+[tool.pymarkdown.plugins]
+# Enabled rules, with some configuration
+emphasis-style = {enabled = true, style = "underscore"}
+heading-style = {enabled = true, style = "atx"}
+ul-indent = {enabled = true, indent = 4}
+
+# disabled rules
+code-block-style = {enabled = false}
+fenced-code-language = {enabled = false}
+line-length = {enabled = false}
+no-blanks-blockquote = {enabled = false}
+no-duplicate-header = {enabled = false}
+ol-prefix = {enabled = false}
+single-h1 = {enabled = false}
 
 
 [[tools.entangled]]
