@@ -1,2 +1,3 @@
 # md-tester
-Test environment for differet markdown configurations and setup
+
+Test environment for different markdown configurations and setup
